@@ -29,15 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (canvasWraps.length > 0) {
     canvasWraps.forEach((wrap, i) => {
       const { gap, speed } = wrap.dataset;
-      const width = +getComputedStyle(wrap).getPropertyValue("--width") ?? 200;
+      const width = +getComputedStyle(wrap).getPropertyValue("--width") || 200;
       const height =
-        +getComputedStyle(wrap).getPropertyValue("--height") ?? 200;
+        +getComputedStyle(wrap).getPropertyValue("--height") || 200;
 
       new CanvasTest({
         wrap,
         images: images[i],
-        gap: +gap ?? 30,
-        speed: +speed ?? 2,
+        gap: +gap || 30,
+        speed: +speed || 2,
         width,
         height,
       });
