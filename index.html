@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,22 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div
+      class="canvasWrap"
+      data-gap="10"
+      data-speed="2"
+      style="--width: 450; --height: 150"
+    ></div>
+
+    <div
+      class="canvasWrap"
+      data-gap="50"
+      data-speed="-2"
+      style="--width: 200; --height: 50"
+    ></div>
+
+    <div class="canvasWrap"></div>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>

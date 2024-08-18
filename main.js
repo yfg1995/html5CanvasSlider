@@ -1,24 +1,46 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { CanvasTest } from "./CanvasSlider";
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const imagesData = [
+  {
+    noImages: 12,
+  },
+  {
+    noImages: 20,
+  },
+  {
+    noImages: 15,
+  },
+];
 
-setupCounter(document.querySelector('#counter'))
+const images = [];
+
+imagesData.forEach((data, idx) => {
+  images.push([]);
+
+  for (let i = 0; i < data.noImages; i++) {
+    images[idx].push(`https://picsum.photos/${400 + i * 10}/${800 + i * 10}`);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const canvasWraps = document.querySelectorAll(".canvasWrap");
+
+  if (canvasWraps.length > 0) {
+    canvasWraps.forEach((wrap, i) => {
+      const { gap, speed } = wrap.dataset;
+      const width = +getComputedStyle(wrap).getPropertyValue("--width") ?? 200;
+      const height =
+        +getComputedStyle(wrap).getPropertyValue("--height") ?? 200;
+
+      new CanvasTest({
+        wrap,
+        images: images[i],
+        gap: +gap ?? 30,
+        speed: +speed ?? 2,
+        width,
+        height,
+      });
+    });
+  }
+});
